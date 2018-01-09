@@ -1,0 +1,59 @@
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '2.0.2'
+}
+
+group 'kiwi.root'
+version '0.1.0'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'org.eclipse.jetty:jetty-server:9.4.8.v20171121'
+    compile 'org.eclipse.jetty.websocket:websocket-server:9.4.8.v20171121'
+    compile 'org.bouncycastle:bcpkix-jdk15on:1.59'
+    compile 'de.mkammerer:argon2-jvm:2.3'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'main.Main'
+    }
+}
+
+shadowJar {
+    baseName = 'screen_share_remote'
+    version = version
+    classifier = null
+
+    // argon2-jvm provides binaries for:
+    // Linux x86
+    // Linux x86-64
+    // Windows x86
+    // Windows x86-64
+    // Darwin (OSX)
+    // so no need to keep any other jna binaries (saving 0.8 MB yay)
+
+    exclude 'com/sun/jna/aix-ppc/*'
+    exclude 'com/sun/jna/freebsd-x86/*'
+    exclude 'com/sun/jna/freebsd-x86-64/*'
+    exclude 'com/sun/jna/linux-aarch64/*'
+    exclude 'com/sun/jna/linux-arm/*'
+    exclude 'com/sun/jna/linux-armel/*'
+    exclude 'com/sun/jna/linux-mips64el/*'
+    exclude 'com/sun/jna/linux-ppc/*'
+    exclude 'com/sun/jna/linux-ppc64le/*'
+    exclude 'com/sun/jna/linux-s390x/*'
+    exclude 'com/sun/jna/openbsd-x86/*'
+    exclude 'com/sun/jna/openbsd-x86-64/*'
+    exclude 'com/sun/jna/sunos-sparc/*'
+    exclude 'com/sun/jna/sunos-sparcv9/*'
+    exclude 'com/sun/jna/sunos-x86-64/*'
+}
