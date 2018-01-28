@@ -23,8 +23,30 @@ Download here: [screen_share_remote/releases/latest](https://github.com/rootkiwi
 
 Example:
 ```
-java -jar screen_share_remote-0.1.0.jar
+java -jar screen_share_remote-<VERSION>.jar
 ```
+
+## How to build
+Run following to output in `build/libs`
+```
+./gradlew shadowJar
+```
+
+## Example NGINX reverse proxy
+You may want to set up `screen_share_remote` behind a reverse proxy like NGINX.
+WebSockets is used so the reverse proxy need to be set up for that.
+Following is an example location config block in NGINX.
+```
+location / {
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://localhost:8081;
+}
+```
+
+## Dependencies
+Java 8.
 
 ## License
 [GNU General Public License 3 or later](https://www.gnu.org/licenses/gpl-3.0.html)
