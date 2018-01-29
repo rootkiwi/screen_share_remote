@@ -16,6 +16,46 @@ Available command-line options:
 3. noconf                            (start without saving config)
 ```
 
+## Example generate config
+```
+$ java -jar screen_share_remote-<VERSION>.jar genconf
+Generate screen_share_remote.conf file in working directory which is:
+<working_directory>
+
+Will overwrite if already exists
+
+The config file will contain these attributes:
+1. port number                 (port number to enter in screen_share)
+2. web server port number      (port the web server will serve on)
+3. password                    (password to enter in screen_share)
+4. self-signed TLS certificate (whose fingerprint to enter in screen_share)
+5. RSA private key             (corresponding to certificate)
+
+Do note that the RSA private key is stored in cleartext, so make sure
+to make the config file inaccessible for unauthorized parties.
+Or you could run in the 'noconf' mode, which means a new private key will be
+generated each time. Without saving to disk.
+
+Leave empty and press ENTER for the [default] value
+1. enter port number (0-65535) [50000]: 
+2. enter web server port number (0-65535) [8081]: 
+3. enter password [random]: 
+
+password:
+B9p2aPreTRh6ya8fHYtUr5JbMDVCW6veRgzJSbiz
+
+Generating a 4096-bit RSA key pair and a self-signed certificate... done.
+
+certificate fingerprint:
+13BEE4D234B31D8EE09542639FA98EEFB3DADCBE39AED4DEAF21C447971F3167
+
+Config file created:
+<working_directory>/screen_share_remote.conf
+
+The settings 'port' and 'webPort' is changeable, the rest is not
+If you need to change the password/certificate run genconf again
+```
+
 ## How to use
 Download the jar file and run it.
 
