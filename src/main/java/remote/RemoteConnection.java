@@ -70,8 +70,8 @@ public class RemoteConnection implements FrameQueueFiller {
         }
     }
 
-    void start(int webPort) {
-        webServer.start(webPort);
+    void start(int webPort, String pageTitle) {
+        webServer.start(webPort, pageTitle);
         new Thread(this::work).start();
     }
 

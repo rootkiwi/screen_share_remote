@@ -115,7 +115,6 @@ public class Main {
             throw new RuntimeException("error getting encoded cert", e);
         }
         System.out.println();
-        System.out.println("started");
 
         start(new ConfigHolder(port, webPort, passwordHash, certificate, keyPair.getPrivate()));
     }

@@ -106,14 +106,18 @@ public class RemoteHandler implements RemoteConnectionHandler, RemoteConnectionC
                 continue;
             }
 
+            String pageTitle;
             try {
+                int pageTitleSize = byteArrayToInt(readAll(4, in));
+                byte[] pageTitleBytes = readAll(pageTitleSize, in);
+                pageTitle = new String(pageTitleBytes, StandardCharsets.UTF_8);
                 tlsSocket.setSoTimeout(0);
             } catch (IOException e) {
                 continue;
             }
             remoteConnected.set(true);
             remoteConnection = new RemoteConnection(in, out, this);
-            remoteConnection.start(config.webPort);
+            remoteConnection.start(config.webPort, pageTitle);
         }
     }
 
