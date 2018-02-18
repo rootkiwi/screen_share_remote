@@ -1,3 +1,11 @@
+# Important
+This program have been rewritten in the Go programming language available here:
+[screen_share_remote_go](https://github.com/rootkiwi/screen_share_remote_go/).
+
+This Java screen_share_remote program will not be updated anymore. The version of
+screen_share was 0.2.0 [screen_share_0.2.0](https://github.com/rootkiwi/screen_share/releases/tag/v0.2.0)
+when the rewrite completed. So screen_share 0.2.0 will work with this Java screen_share_remote program.
+
 # screen_share_remote
 This program is meant to be used together with [screen_share](https://github.com/rootkiwi/screen_share/).
 
